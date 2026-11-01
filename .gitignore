@@ -80,6 +80,7 @@ x86/
 
 # Visual Studio cache/options directory
 .vs/
+.vscode/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
