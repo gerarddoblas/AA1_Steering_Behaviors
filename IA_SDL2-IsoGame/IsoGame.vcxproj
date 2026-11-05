@@ -110,6 +110,7 @@
     <ClInclude Include="core\renderer.hpp" />
     <ClInclude Include="core\texture.hpp" />
     <ClInclude Include="core\texture_pool.hpp" />
+    <ClInclude Include="engine\Seek.hpp" />
     <ClInclude Include="iso\isoEngine.hpp" />
     <ClInclude Include="iso\isoMap.hpp" />
     <ClInclude Include="engine\Agent.hpp" />
@@ -120,6 +121,8 @@
     <ClInclude Include="engine\Vector2.hpp" />
     <ClInclude Include="engine\World.hpp" />
     <ClInclude Include="engine\WorldObject.hpp" />
+    <ClInclude Include="Minion.hpp" />
+    <ClInclude Include="SteeringBehaviour.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data\maps\demo.map" />
