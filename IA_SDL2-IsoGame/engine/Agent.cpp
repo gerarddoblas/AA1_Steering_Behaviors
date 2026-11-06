@@ -93,6 +93,11 @@ void Agent::update(float dt, const World &world)
     }
 }
 
+std::vector<Agent*> Agent::GetAgents() const
+{
+    return std::vector<Agent*>();
+}
+
 // See Agent.hpp for the full contract (initInfluence/setInfluence/influenceAt/
 // clearInfluence) - implementation notes only below.
 

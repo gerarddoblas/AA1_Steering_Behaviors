@@ -1,5 +1,7 @@
 #include "Arrive.hpp"
 
+Arrive::Arrive(float slowRadius, float stopRadius) : _slowRadius(slowRadius), _stopRadius(stopRadius) {}
+
 Steering Arrive::GetSteering(const Agent& agent) const
 {
     if(!agent.hasTarget)

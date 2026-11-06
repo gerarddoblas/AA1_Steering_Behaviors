@@ -38,6 +38,7 @@ public:
     // where your steering and decision-making (FSM, decision tree) code goes.
     void update(float dt, const World &world);
 
+    std::vector<Agent*> GetAgents() const;
     // --- Influence map (per-agent scalar field over the tile grid) --------
     // Summary: a per-agent per-tile float layer for AI code to read/write:
     // influence, a cost field, a visited-heatmap, whatever an exercise needs.

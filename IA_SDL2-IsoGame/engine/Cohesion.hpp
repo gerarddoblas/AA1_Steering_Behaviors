@@ -1,5 +1,5 @@
 #pragma once
-#include "engine/SteeringBehaviour.hpp"
+#include "engine/SteeringBehavior.hpp"
 
 class Cohesion : public SteeringBehavior
 {
