@@ -66,6 +66,7 @@
     <ClCompile Include="engine\Seek.cpp" />
     <ClCompile Include="engine\Arrive.cpp" />
     <ClCompile Include="engine\Separation.cpp" />
+    <ClCompile Include="engine\Cohesion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\deltatimer.hpp">

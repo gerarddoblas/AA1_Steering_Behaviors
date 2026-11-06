@@ -88,6 +88,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="engine\Arrive.cpp" />
+    <ClCompile Include="engine\Cohesion.cpp" />
     <ClCompile Include="engine\Seek.cpp" />
     <ClCompile Include="engine\Separation.cpp" />
     <ClCompile Include="main.cpp" />
