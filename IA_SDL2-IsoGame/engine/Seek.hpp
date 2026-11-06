@@ -1,6 +1,8 @@
-#include "engine/SteeringBehaviour.hpp"
+#pragma once
+#include "engine/SteeringBehavior.hpp"
 
-class Seek : public SteeringBehaviour
+class Seek : public SteeringBehavior
 {
-
+public:
+	Steering GetSteering(const Agent& agent) const override;
 };

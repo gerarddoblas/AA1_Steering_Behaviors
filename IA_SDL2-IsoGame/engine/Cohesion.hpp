@@ -1,6 +1,7 @@
+#pragma once
 #include "engine/SteeringBehaviour.hpp"
 
-class Seek : public SteeringBehaviour
+class Cohesion : public SteeringBehavior
 {
 
 };

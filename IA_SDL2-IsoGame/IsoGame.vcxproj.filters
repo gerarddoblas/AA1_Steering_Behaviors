@@ -63,6 +63,8 @@
     <ClCompile Include="engine\World.cpp">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
+    <ClCompile Include="engine\Seek.cpp" />
+    <ClCompile Include="engine\Arrive.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\deltatimer.hpp">
@@ -113,15 +115,27 @@
     <ClInclude Include="engine\WorldObject.hpp">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
-    <ClInclude Include="Minion.hpp">
-      <Filter>Source Files\engine</Filter>
-    </ClInclude>
-    <ClInclude Include="SteeringBehaviour.hpp">
-      <Filter>Source Files\engine</Filter>
-    </ClInclude>
     <ClInclude Include="engine\Seek.hpp">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
+    <ClInclude Include="engine\Arrive.hpp">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Cohesion.hpp">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Minion.hpp">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Separation.hpp">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\SteeringBehavior.hpp">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Alingment.hpp" />
+    <ClInclude Include="CompositeBehaviour.hpp" />
+    <ClInclude Include="Steering.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data\maps\demo.map">

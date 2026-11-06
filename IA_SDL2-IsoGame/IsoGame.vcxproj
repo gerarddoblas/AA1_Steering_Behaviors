@@ -87,6 +87,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="engine\Arrive.cpp" />
+    <ClCompile Include="engine\Seek.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="core\deltatimer.cpp" />
     <ClCompile Include="core\initclose.cpp" />
@@ -104,13 +106,20 @@
     <ClCompile Include="engine\World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Alingment.hpp" />
+    <ClInclude Include="CompositeBehaviour.hpp" />
     <ClInclude Include="core\deltatimer.hpp" />
     <ClInclude Include="core\initclose.hpp" />
     <ClInclude Include="core\logger.hpp" />
     <ClInclude Include="core\renderer.hpp" />
     <ClInclude Include="core\texture.hpp" />
     <ClInclude Include="core\texture_pool.hpp" />
+    <ClInclude Include="engine\Arrive.hpp" />
+    <ClInclude Include="engine\Cohesion.hpp" />
+    <ClInclude Include="engine\Minion.hpp" />
     <ClInclude Include="engine\Seek.hpp" />
+    <ClInclude Include="engine\Separation.hpp" />
+    <ClInclude Include="engine\SteeringBehavior.hpp" />
     <ClInclude Include="iso\isoEngine.hpp" />
     <ClInclude Include="iso\isoMap.hpp" />
     <ClInclude Include="engine\Agent.hpp" />
@@ -121,8 +130,7 @@
     <ClInclude Include="engine\Vector2.hpp" />
     <ClInclude Include="engine\World.hpp" />
     <ClInclude Include="engine\WorldObject.hpp" />
-    <ClInclude Include="Minion.hpp" />
-    <ClInclude Include="SteeringBehaviour.hpp" />
+    <ClInclude Include="Steering.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data\maps\demo.map" />
