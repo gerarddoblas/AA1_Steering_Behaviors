@@ -591,20 +591,24 @@ void Game::updateMouseTarget()
 {
     // Uses the same screenToWorld() transform the ground/grid/agents/objects
     // are drawn with, so the picked tile always matches what's on screen.
-    if (world_.agents.empty() || selectedAgentIndex_ >= world_.agents.size()) {
+    if (world_.agents.empty()) {
         return;
     }
 
     int mouseX, mouseY;
     SDL_GetMouseState(&mouseX, &mouseY);
     Vector2 worldPos = screenToWorld(mouseX, mouseY);
-
+    //
     int tileX, tileY;
     world_.worldToTile(worldPos, tileX, tileY);
+    Vector2 targetPos = world_.tileCenter(tileX, tileY);
     if (world_.inBounds(tileX, tileY)) {
-        Agent &selected = world_.agents[selectedAgentIndex_];
-        selected.target = world_.tileCenter(tileX, tileY);
-        selected.hasTarget = true;
+
+        for (Agent& agent : world_.agents)
+        {
+            agent.target = targetPos;
+            agent.hasTarget = true;
+        }
     }
 }
 
@@ -690,6 +694,8 @@ void Game::processInput()
 
 void Game::update(float dt)
 {
+    _army.Update(world_.agents,dt);
+
     float step = iso_->mapScrollSpeed * dt;
 
     // Camera scrolling: WASD. (Arrow keys are Left/Right = cycle selected

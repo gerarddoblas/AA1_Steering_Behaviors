@@ -4,6 +4,7 @@
 #include "Vector2.hpp"
 
 class World; // forward declaration (Agent.cpp includes World.hpp)
+class SteeringBehavior; // forward declaration (Agent.cpp includes Steering.hpp)
 
 // FILE: a moving agent - the thing students' AI actually drives.
 // FITS IN: pure kinematics/AI, no SDL/rendering/isometric maths (Game draws it).
@@ -29,7 +30,6 @@ public:
     // agent's target on click).
     Vector2 target;
     bool    hasTarget = false;
-
     // Summary: advance the agent by dt seconds (the per-frame AI tick).
     // Inputs: dt = seconds since last call; world = read-only tile grid/obstacles.
     // Side effects: mutates position/velocity/heading in place. Errors: none -
@@ -38,6 +38,10 @@ public:
     // where your steering and decision-making (FSM, decision tree) code goes.
     void update(float dt, const World &world);
 
+    std::vector<Agent*> GetAgents() const;
+    void SetAgents(const std::vector<Agent*>& agents);
+	void SetSteering(SteeringBehavior* steeringBehavior);
+    SteeringBehavior* GetSteering() const;
     // --- Influence map (per-agent scalar field over the tile grid) --------
     // Summary: a per-agent per-tile float layer for AI code to read/write:
     // influence, a cost field, a visited-heatmap, whatever an exercise needs.
@@ -50,7 +54,9 @@ public:
     void  setInfluence(int tileX, int tileY, float value);
     float influenceAt(int tileX, int tileY) const;   // 0 if out of bounds or uninitialised
     void  clearInfluence();
-
+protected:
+	SteeringBehavior* _steeringBehavior = nullptr;
+    const std::vector<Agent*>* _agents = nullptr;
 private:
     // Summary: Reynolds "seek" - steering force toward moving at full speed
     // straight at seekTarget. Output: a force (acceleration); no side effects.
