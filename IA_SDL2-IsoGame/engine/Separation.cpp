@@ -6,7 +6,7 @@ Steering Separation::GetSteering(const Agent& agent) const
 {
     Steering steering;
     Vector2 totalForce = {0,0};
-    const std::vector<Agent*> brothers = agent.GetAgents();
+    const std::vector<Agent*>& brothers = agent.GetAgents();
     //
     for (short i = 0; i < brothers.size(); i++)
     {
@@ -22,9 +22,7 @@ Steering Separation::GetSteering(const Agent& agent) const
             if ( dist < _radius)
             {
                 float force = (_radius - dist) / _radius;
-                totalForce += away.normalized() * force;
-
-                
+                totalForce += away.normalized() * force;    
             }
         }
     }

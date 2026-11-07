@@ -67,6 +67,11 @@
     <ClCompile Include="engine\Arrive.cpp" />
     <ClCompile Include="engine\Separation.cpp" />
     <ClCompile Include="engine\Cohesion.cpp" />
+    <ClCompile Include="engine\Alignment.cpp" />
+    <ClCompile Include="engine\CompositeBehavior.cpp" />
+    <ClCompile Include="engine\WeightedBlending.cpp" />
+    <ClCompile Include="engine\PrioritizedList.cpp" />
+    <ClCompile Include="engine\Army.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\deltatimer.hpp">
@@ -135,10 +140,9 @@
     <ClInclude Include="engine\SteeringBehavior.hpp">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
-    <ClInclude Include="engine\Alingment.hpp" />
-    <ClInclude Include="engine\CompositeBehaviour.hpp" />
-    <ClInclude Include="engine\Steering.hpp" />
     <ClInclude Include="engine\Alignment.hpp" />
+    <ClInclude Include="engine\CompositeBehavior.hpp" />
+    <ClInclude Include="engine\Steering.hpp" />
     <ClInclude Include="external\SDL2\include\SDL2\begin_code.h" />
     <ClInclude Include="external\SDL2\include\SDL2\close_code.h" />
     <ClInclude Include="external\SDL2\include\SDL2\SDL.h" />
@@ -231,6 +235,9 @@
     <ClInclude Include="external\SDL2\include\SDL2\SDL_version.h" />
     <ClInclude Include="external\SDL2\include\SDL2\SDL_video.h" />
     <ClInclude Include="external\SDL2\include\SDL2\SDL_vulkan.h" />
+    <ClInclude Include="engine\WeightedBlending.hpp" />
+    <ClInclude Include="engine\PrioritizedList.hpp" />
+    <ClInclude Include="engine\Army.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data\maps\demo.map">

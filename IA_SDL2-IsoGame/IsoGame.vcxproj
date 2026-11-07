@@ -87,10 +87,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="engine\Alignment.cpp" />
+    <ClCompile Include="engine\Army.cpp" />
     <ClCompile Include="engine\Arrive.cpp" />
     <ClCompile Include="engine\Cohesion.cpp" />
+    <ClCompile Include="engine\CompositeBehavior.cpp" />
+    <ClCompile Include="engine\PrioritizedList.cpp" />
     <ClCompile Include="engine\Seek.cpp" />
     <ClCompile Include="engine\Separation.cpp" />
+    <ClCompile Include="engine\WeightedBlending.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="core\deltatimer.cpp" />
     <ClCompile Include="core\initclose.cpp" />
@@ -108,21 +113,23 @@
     <ClCompile Include="engine\World.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="engine\Alingment.hpp" />
-    <ClInclude Include="engine\CompositeBehaviour.hpp" />
+    <ClInclude Include="engine\Alignment.hpp" />
+    <ClInclude Include="engine\Army.hpp" />
+    <ClInclude Include="engine\CompositeBehavior.hpp" />
     <ClInclude Include="core\deltatimer.hpp" />
     <ClInclude Include="core\initclose.hpp" />
     <ClInclude Include="core\logger.hpp" />
     <ClInclude Include="core\renderer.hpp" />
     <ClInclude Include="core\texture.hpp" />
     <ClInclude Include="core\texture_pool.hpp" />
-    <ClInclude Include="engine\Alignment.hpp" />
     <ClInclude Include="engine\Arrive.hpp" />
     <ClInclude Include="engine\Cohesion.hpp" />
     <ClInclude Include="engine\Minion.hpp" />
+    <ClInclude Include="engine\PrioritizedList.hpp" />
     <ClInclude Include="engine\Seek.hpp" />
     <ClInclude Include="engine\Separation.hpp" />
     <ClInclude Include="engine\SteeringBehavior.hpp" />
+    <ClInclude Include="engine\WeightedBlending.hpp" />
     <ClInclude Include="external\SDL2\include\SDL2\begin_code.h" />
     <ClInclude Include="external\SDL2\include\SDL2\close_code.h" />
     <ClInclude Include="external\SDL2\include\SDL2\SDL.h" />

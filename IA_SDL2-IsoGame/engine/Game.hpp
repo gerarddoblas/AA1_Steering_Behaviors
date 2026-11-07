@@ -6,6 +6,7 @@
 #include "Animation.hpp"
 #include "../core/texture_pool.hpp"
 #include "../iso/isoEngine.hpp"
+#include "Army.hpp"
 
 // FILE: the runtime - owns the isometric engine, texture pool and World; runs
 // input -> update -> render. Only place that knows both the AI-facing World
@@ -127,6 +128,7 @@ private:
     bool         debugMode_ = false;   // F1: steering target/line + object tile markers
     bool         showGrid_  = false;   // G: code-drawn corner-dot tile grid
     size_t       selectedAgentIndex_ = 0;   // Left/Right: which agent Click targets / F1 inspects
+    Army _army;
 };
 
 #endif // ENGINE_GAME_HPP

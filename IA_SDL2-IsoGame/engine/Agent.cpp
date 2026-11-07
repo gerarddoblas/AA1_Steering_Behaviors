@@ -4,6 +4,7 @@
 // EXTEND: this is where your own steering behaviours plug in.
 #include "Agent.hpp"
 #include "World.hpp"
+#include "SteeringBehavior.hpp"
 #include <algorithm>
 
 namespace {
@@ -51,13 +52,17 @@ void Agent::update(float dt, const World &world)
     // WATCH OUT: 8.0f is a distance in world units, not tiles - like maxSpeed/
     // maxForce/radius in Agent.hpp, it scales with World::tileSize, so keep it
     // proportional if tileSize ever changes.
-    const float arriveRadius = 8.0f;
-    if (distance(position, seekTarget) <= arriveRadius) {
-        velocity = Vector2(0.0f, 0.0f);
-        return;
-    }
+    //const float arriveRadius = 8.0f;
+    //if (distance(position, seekTarget) <= arriveRadius) {
+    //    velocity = Vector2(0.0f, 0.0f);
+    //    return;
+    //}
 
-    Vector2 steering = seek(seekTarget);
+    Vector2 steering;
+    if (_steeringBehavior)
+        steering = _steeringBehavior->GetSteering(*this)._linear;
+    else
+		steering = seek(seekTarget);
 
     // Integrate: acceleration -> velocity (frame-rate independent).
     velocity = (velocity + steering * dt).truncated(maxSpeed);
@@ -95,7 +100,26 @@ void Agent::update(float dt, const World &world)
 
 std::vector<Agent*> Agent::GetAgents() const
 {
+    if(_agents != nullptr)
+        return *_agents;
     return std::vector<Agent*>();
+}
+
+void Agent::SetAgents(const std::vector<Agent*>& agents)
+{
+	_agents = &agents;
+}
+
+void Agent::SetSteering(SteeringBehavior* steeringBehavior)
+{
+	_steeringBehavior = steeringBehavior;
+}
+
+SteeringBehavior* Agent::GetSteering() const
+{
+    if(_steeringBehavior != nullptr)
+		return _steeringBehavior;
+    return nullptr;
 }
 
 // See Agent.hpp for the full contract (initInfluence/setInfluence/influenceAt/
