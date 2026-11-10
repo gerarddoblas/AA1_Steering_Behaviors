@@ -23,6 +23,10 @@ private:
 	float _stopRadiusArrive = 20.0f;
 	float _arriveEnterDist = 300.f;
 	float _arriveExitDist = 350.f;
+	//
+	bool  _followLeader = false;   // se activa tras el primer clic
+	float _leaderStopDist = 0.1f;  // distancia a la que el líder "llega"
+	float _followerStopDist = 1.0f; // distancia a la que un seguidor se queda quieto
 	//Separation
 	float _separationRadius = 80.0f;
 	//Alignment

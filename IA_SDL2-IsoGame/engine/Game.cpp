@@ -17,6 +17,7 @@
 #include <cstdio>
 #include <vector>
 #include <algorithm>
+#include <iostream>
 
 namespace {
 
@@ -603,12 +604,10 @@ void Game::updateMouseTarget()
     world_.worldToTile(worldPos, tileX, tileY);
     Vector2 targetPos = world_.tileCenter(tileX, tileY);
     if (world_.inBounds(tileX, tileY)) {
-
-        for (Agent& agent : world_.agents)
-        {
-            agent.target = targetPos;
-            agent.hasTarget = true;
-        }
+        // Referencia al líder 
+        Agent& leader = world_.agents[0];
+        leader.target = targetPos;
+        leader.hasTarget = true;
     }
 }
 
