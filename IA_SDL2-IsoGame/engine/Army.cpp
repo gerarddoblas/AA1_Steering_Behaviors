@@ -1,5 +1,5 @@
 #include "Army.hpp"
-#include <iostream>
+#include <cmath>
 
 Army::Army()
 {
@@ -21,22 +21,45 @@ Army::Army()
 	//
 	_nearPriority.Add(&_emergencySeparation);
 	_nearPriority.Add(&_nearBlend);
+
+	_leaderFar.Add(&_emergencySeparation);
+	_leaderFar.Add(&_seekBehavior);
+
+	_leaderNear.Add(&_emergencySeparation);
+	_leaderNear.Add(&_arriveBehavior);
+}
+
+Vector2 Army::FormationSlot(const Agent& leader, size_t i) const
+{
+	const float row = (float)((i + 1) / 2);
+	const float side = (i % 2 == 1) ? -1.0f : 1.0f;
+
+	const Vector2 forward(std::cos(leader.heading), std::sin(leader.heading));
+	const Vector2 right(-forward.y, forward.x);
+
+	return leader.position
+		- forward * (row * _slotSpacing)
+		+ right * (side * row * _slotSpacing * _slotSideFactor);
 }
 
 void Army::Update(std::vector<Agent>& agents, float dt)
 {
+	(void)dt;
+	if (agents.empty())
+		return;
+
 	_agents.clear();
-    //
-    for (Agent& agent : agents)
-    {
-        _agents.push_back(&agent);
-    }
-    //
-    for (Agent& agent : agents)
-    {
-        agent.SetAgents(_agents);
-    }
-    //
+	//
+	for (Agent& agent : agents)
+	{
+		_agents.push_back(&agent);
+	}
+	//
+	for (Agent& agent : agents)
+	{
+		agent.SetAgents(_agents);
+	}
+	//
 	Agent& leader = agents[0];
 
 	if (leader.hasTarget)
@@ -45,7 +68,10 @@ void Army::Update(std::vector<Agent>& agents, float dt)
 
 		float leaderDist = (leader.target - leader.position).length();
 		if (leaderDist < _leaderStopDist)
+		{
 			leader.hasTarget = false;
+			leader.velocity = Vector2(0.0f, 0.0f);
+		}
 	}
 	//
 	for (size_t i = 1; i < agents.size(); ++i)
@@ -58,23 +84,27 @@ void Army::Update(std::vector<Agent>& agents, float dt)
 			continue;
 		}
 
-		float d = (leader.position - follower.position).length();
+		Vector2 slot = FormationSlot(leader, i);
+		float d = (slot - follower.position).length();
 		if (d < _followerStopDist)
 		{
 			follower.hasTarget = false;
 		}
 		else
 		{
-			follower.target = leader.position;
+			follower.target = slot;
 			follower.hasTarget = true;
 		}
 	}
-	for (Agent& agent : agents)
+	for (size_t i = 0; i < agents.size(); ++i)
 	{
+		Agent& agent = agents[i];
+		SteeringBehavior* far = (i == 0) ? (SteeringBehavior*)&_leaderFar : (SteeringBehavior*)&_farPriority;
+		SteeringBehavior* near = (i == 0) ? (SteeringBehavior*)&_leaderNear : (SteeringBehavior*)&_nearPriority;
 		//
 
 		if (agent.GetSteering() == nullptr)
-			agent.SetSteering(&_farPriority);
+			agent.SetSteering(far);
 
 		if (!agent.hasTarget)
 			continue;
@@ -82,16 +112,13 @@ void Army::Update(std::vector<Agent>& agents, float dt)
 		float dist = (agent.target - agent.position).length();
 
 		//
-		if (agent.GetSteering() == &_farPriority && dist < _arriveEnterDist)
+		if (agent.GetSteering() == far && dist < _arriveEnterDist)
 		{
-			agent.SetSteering(&_nearPriority);
-			std::cout << "lejos -> cerca (dist " << dist << ")\n";
+			agent.SetSteering(near);
 		}
-		else if (agent.GetSteering() == &_nearPriority && dist > _arriveExitDist)
+		else if (agent.GetSteering() == near && dist > _arriveExitDist)
 		{
-			agent.SetSteering(&_farPriority);
-			std::cout << "cerca -> lejos (dist " << dist << ")\n";
+			agent.SetSteering(far);
 		}
 	}
-	std::cout << leader.hasTarget << std::endl;
 }

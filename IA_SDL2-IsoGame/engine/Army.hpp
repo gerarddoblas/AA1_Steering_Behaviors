@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include "Agent.hpp"
 #include "Seek.hpp"
 #include "Arrive.hpp"
@@ -17,6 +18,8 @@ public:
 	void Update(std::vector<Agent>& _agents, float dt);
 
 private:
+	Vector2 FormationSlot(const Agent& leader, size_t i) const;
+
 	std::vector<Agent*> _agents;
 	//Steering Variables
 	float _slowRadiusArrive = 250.0f;
@@ -25,8 +28,10 @@ private:
 	float _arriveExitDist = 350.f;
 	//
 	bool  _followLeader = false;   // se activa tras el primer clic
-	float _leaderStopDist = 0.1f;  // distancia a la que el líder "llega"
-	float _followerStopDist = 1.0f; // distancia a la que un seguidor se queda quieto
+	float _leaderStopDist = 20.0f;  // distancia a la que el líder "llega"
+	float _followerStopDist = 24.0f; // distancia a la que un seguidor se queda quieto
+	float _slotSpacing = 90.0f;
+	float _slotSideFactor = 0.8f;
 	//Separation
 	float _separationRadius = 80.0f;
 	//Alignment
@@ -45,10 +50,10 @@ private:
 
 	//Steering behaviors
 	Seek _seekBehavior;
-	Arrive _arriveBehavior = {_slowRadiusArrive, _stopRadiusArrive};
-	Separation _separation = {_separationRadius};
-	Alignment _alignmentBehavior = {_alignmentRadius};
-	Cohesion _cohesionBehavior = {_cohesionRadius};
+	Arrive _arriveBehavior = { _slowRadiusArrive, _stopRadiusArrive };
+	Separation _separation = { _separationRadius };
+	Alignment _alignmentBehavior = { _alignmentRadius };
+	Cohesion _cohesionBehavior = { _cohesionRadius };
 	Separation _emergencySeparation = { _emergencyRadius };
 	//WeightedBlending
 	WeightedBlending _flocking;
@@ -57,4 +62,6 @@ private:
 	//PrioritizedList
 	PrioritizedList _farPriority{ _priorityThreshold };
 	PrioritizedList _nearPriority{ _priorityThreshold };
+	PrioritizedList _leaderFar{ _priorityThreshold };
+	PrioritizedList _leaderNear{ _priorityThreshold };
 };
