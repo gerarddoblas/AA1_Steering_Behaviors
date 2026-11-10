@@ -670,25 +670,31 @@ void Game::processInput()
         else if (event.type == SDL_KEYUP && event.key.keysym.scancode == SDL_SCANCODE_1) {
             _army.ResetWeights();
             _army.ExaggerateSeek(5.0f);
+            std::cout << "Exaggerating Seek" << std::endl;
         }
         else if (event.type == SDL_KEYUP && event.key.keysym.scancode == SDL_SCANCODE_2) {
             _army.ResetWeights();
             _army.ExaggerateArrive(5.0f);
+            std::cout << "Exaggerating Arrive" << std::endl;
         }
         else if (event.type == SDL_KEYUP && event.key.keysym.scancode == SDL_SCANCODE_3) {
             _army.ResetWeights();
             _army.ExaggerateSeparation(5.0f);
+            std::cout << "Exaggerating Separation" << std::endl;
         }
         else if (event.type == SDL_KEYUP && event.key.keysym.scancode == SDL_SCANCODE_4) {
             _army.ResetWeights();
             _army.ExaggerateAlignment(5.0f);
+            std::cout << "Exaggerating Alignment" << std::endl;
         }
         else if (event.type == SDL_KEYUP && event.key.keysym.scancode == SDL_SCANCODE_5) {
             _army.ResetWeights();
             _army.ExaggerateCohesion(5.0f);
+            std::cout << "Exaggerating Cohesion" << std::endl;
         }
-        else if (event.type == SDL_KEYUP && event.key.keysym.scancode == SDL_SCANCODE_5) {
+        else if (event.type == SDL_KEYUP && event.key.keysym.scancode == SDL_SCANCODE_6) {
             _army.ResetWeights();
+            std::cout << "Reset Weights";
         }
         else if (event.type == SDL_MOUSEWHEEL) {
             // Zoom around the screen centre, not whatever tile the mouse

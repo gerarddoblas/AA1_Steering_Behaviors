@@ -137,7 +137,7 @@ int main(int argc, char *argv[])
     // and optionally its own maxSpeed/radius/influence map.
     int centerX = game.world().widthTiles / 2;
     int centerY = game.world().heightTiles / 2;
-    const int spawnOffsets[5][2] = { { 0, 0 }, { -8, -8 }, { 8, 8 }, { 0, 8 }, { -8, 0 }};
+    const int spawnOffsets[9][2] = { { 0, 0 }, { -8, -8 }, { 8, 8 }, { 0, 8 }, { -8, 0 }, { -5, -8 }, { -8, 5 }, { -8, -9 }, { -8, -6 } };
     for (const auto &offset : spawnOffsets) {
         int tileX = centerX + offset[0];
         int tileY = centerY + offset[1];
