@@ -146,6 +146,7 @@ int main(int argc, char *argv[])
         agent.position = game.world().tileCenter(tileX, tileY);
         paintDemoInfluence(game.world(), agent, tileX, tileY);
         game.world().agents.push_back(agent);
+        game.world().addObject(ObjectType::Tree, tileX+5, tileY, 0);
     }
     game.centerCameraOn(game.world().agents[0].position);
 

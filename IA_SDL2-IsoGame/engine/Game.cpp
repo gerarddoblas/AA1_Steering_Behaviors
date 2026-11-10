@@ -667,6 +667,29 @@ void Game::processInput()
         else if (event.type == SDL_KEYUP && event.key.keysym.scancode == SDL_SCANCODE_RIGHT) {
             cycleSelectedAgent(1);
         }
+        else if (event.type == SDL_KEYUP && event.key.keysym.scancode == SDL_SCANCODE_1) {
+            _army.ResetWeights();
+            _army.ExaggerateSeek(5.0f);
+        }
+        else if (event.type == SDL_KEYUP && event.key.keysym.scancode == SDL_SCANCODE_2) {
+            _army.ResetWeights();
+            _army.ExaggerateArrive(5.0f);
+        }
+        else if (event.type == SDL_KEYUP && event.key.keysym.scancode == SDL_SCANCODE_3) {
+            _army.ResetWeights();
+            _army.ExaggerateSeparation(5.0f);
+        }
+        else if (event.type == SDL_KEYUP && event.key.keysym.scancode == SDL_SCANCODE_4) {
+            _army.ResetWeights();
+            _army.ExaggerateAlignment(5.0f);
+        }
+        else if (event.type == SDL_KEYUP && event.key.keysym.scancode == SDL_SCANCODE_5) {
+            _army.ResetWeights();
+            _army.ExaggerateCohesion(5.0f);
+        }
+        else if (event.type == SDL_KEYUP && event.key.keysym.scancode == SDL_SCANCODE_5) {
+            _army.ResetWeights();
+        }
         else if (event.type == SDL_MOUSEWHEEL) {
             // Zoom around the screen centre, not whatever tile the mouse
             // happens to be over (that could be anywhere, including past the

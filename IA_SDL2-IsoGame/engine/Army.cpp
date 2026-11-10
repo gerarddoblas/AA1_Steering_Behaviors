@@ -122,3 +122,91 @@ void Army::Update(std::vector<Agent>& agents, float dt)
 		}
 	}
 }
+
+void Army::ExaggerateSeek(float factor) {
+	ResetWeights();
+	_goalWeight *= factor;
+
+	// Recreamos el farBlend asignándole los nuevos valores directamente
+	_farBlend = WeightedBlending();
+	_farBlend.Add(&_flocking, _flockingWeight);
+	_farBlend.Add(&_seekBehavior, _goalWeight);
+}
+
+void Army::ExaggerateArrive(float factor) {
+	ResetWeights();
+	_slowRadiusArrive *= factor;
+	_goalWeight *= factor;
+
+	// Actualizamos el Arrive con el nuevo radio de frenado
+	_arriveBehavior = Arrive{ _slowRadiusArrive, _stopRadiusArrive };
+
+	_nearBlend = WeightedBlending();
+	_nearBlend.Add(&_flocking, _flockingWeight);
+	_nearBlend.Add(&_arriveBehavior, _goalWeight);
+}
+
+void Army::ExaggerateSeparation(float factor) {
+	ResetWeights();
+	_separationWeight *= factor;
+	_separationRadius *= factor;
+
+	// Actualizamos el comportamiento de separación con el nuevo radio
+	_separation = Separation{ _separationRadius };
+
+	_flocking = WeightedBlending();
+	_flocking.Add(&_separation, _separationWeight);
+	_flocking.Add(&_alignmentBehavior, _alignmentWeight);
+	_flocking.Add(&_cohesionBehavior, _cohesionWeight);
+}
+
+void Army::ExaggerateAlignment(float factor) {
+	ResetWeights();
+	_alignmentWeight *= factor;
+
+	_flocking = WeightedBlending();
+	_flocking.Add(&_separation, _separationWeight);
+	_flocking.Add(&_alignmentBehavior, _alignmentWeight);
+	_flocking.Add(&_cohesionBehavior, _cohesionWeight);
+}
+
+void Army::ExaggerateCohesion(float factor) {
+	ResetWeights();
+	_cohesionWeight *= factor;
+
+	_flocking = WeightedBlending();
+	_flocking.Add(&_separation, _separationWeight);
+	_flocking.Add(&_alignmentBehavior, _alignmentWeight);
+	_flocking.Add(&_cohesionBehavior, _cohesionWeight);
+}
+
+void Army::ResetWeights() {
+	_separationWeight = 1.5f;
+	_alignmentWeight = 1.0f;
+	_cohesionWeight = 0.8f;
+	_flockingWeight = 1.0f;
+	_goalWeight = 1.2f;
+	_slowRadiusArrive = 250.0f;
+	_stopRadiusArrive = 20.0f;
+	_separationRadius = 80.0f;
+	_alignmentRadius = 192.f;
+	_cohesionRadius = 256.f;
+
+	// Reinicializamos los comportamientos a sus radios originales
+	_arriveBehavior = Arrive{ _slowRadiusArrive, _stopRadiusArrive };
+	_separation = Separation{ _separationRadius };
+
+	// Recreamos los blends limpios desde cero
+	_flocking = WeightedBlending();
+	_flocking.Add(&_separation, _separationWeight);
+	_flocking.Add(&_alignmentBehavior, _alignmentWeight);
+	_flocking.Add(&_cohesionBehavior, _cohesionWeight);
+
+	_farBlend = WeightedBlending();
+	_farBlend.Add(&_flocking, _flockingWeight);
+	_farBlend.Add(&_seekBehavior, _goalWeight);
+
+	_nearBlend = WeightedBlending();
+	_nearBlend.Add(&_flocking, _flockingWeight);
+	_nearBlend.Add(&_arriveBehavior, _goalWeight);
+}

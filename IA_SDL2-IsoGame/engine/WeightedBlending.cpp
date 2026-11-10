@@ -55,3 +55,7 @@ Steering WeightedBlending::GetSteering(const Agent& agent) const
 	//
 	return result.truncated(agent.maxForce);
 }
+
+void WeightedBlending::Clear() {
+	_weights.clear(); 
+}

@@ -10,6 +10,7 @@ public:
 	void Remove(SteeringBehavior* steering) override;
 	void SetWeight(SteeringBehavior* steering, float weight);
 	Steering GetSteering(const Agent& agent) const override;
+	void Clear();
 
 private:
 	std::vector<float> _weights;

@@ -17,6 +17,13 @@ public:
 	Army& operator=(const Army&) = delete;
 	void Update(std::vector<Agent>& _agents, float dt);
 
+	void ExaggerateSeek(float factor=5.0f);
+	void ExaggerateArrive(float factor = 5.0f);
+	void ExaggerateSeparation(float factor = 5.0f);
+	void ExaggerateAlignment(float factor = 5.0f);
+	void ExaggerateCohesion(float factor = 5.0f);
+	void ResetWeights();
+
 private:
 	Vector2 FormationSlot(const Agent& leader, size_t i) const;
 
