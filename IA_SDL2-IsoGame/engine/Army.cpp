@@ -3,25 +3,27 @@
 
 Army::Army()
 {
-	//
+	//Añado los Steerings con su peso en un WeightedBlending, es decir, la mezcla de las 3 reglas de Reynold
 	_flocking.Add(&_separation, _separationWeight);
 	_flocking.Add(&_alignmentBehavior, _alignmentWeight);
 	_flocking.Add(&_cohesionBehavior, _cohesionWeight);
 
-	//
+	//Creo 2 WeightedBlending, uno para cuando el jugador este en seek y otro para cuando este en Arrive
+	//Añado en ambos WeightedBlending el anterior, es decir, un flocking.
+	//También, un peso para decidir si esta en arrive o en seek.
 	_farBlend.Add(&_flocking, _flockingWeight);
 	_farBlend.Add(&_seekBehavior, _goalWeight);
 
 	_nearBlend.Add(&_flocking, _flockingWeight);
 	_nearBlend.Add(&_arriveBehavior, _goalWeight);
 
-	//
+	//Luego añado en una PrioritizedList el WeightedBlending de lejos y un limite de emergencia para que se llame a un Separation
 	_farPriority.Add(&_emergencySeparation);
 	_farPriority.Add(&_farBlend);
-	//
+	//Luego añado en una PrioritizedList el WeightedBlending de cerca y un limite de emergencia para que se llame a un Separation
 	_nearPriority.Add(&_emergencySeparation);
 	_nearPriority.Add(&_nearBlend);
-
+	//Una PrioritizedList basica para el Lider, tanto de lejos como de cerca
 	_leaderFar.Add(&_emergencySeparation);
 	_leaderFar.Add(&_seekBehavior);
 
@@ -49,17 +51,17 @@ void Army::Update(std::vector<Agent>& agents, float dt)
 		return;
 
 	_agents.clear();
-	//
+	//Se limpia el vector de Agents para que no de problemas y se vuelve a regenar
 	for (Agent& agent : agents)
 	{
 		_agents.push_back(&agent);
 	}
-	//
+	//Luego a cada agent se le añade el vector de agents anteriormente rellenado
 	for (Agent& agent : agents)
 	{
 		agent.SetAgents(_agents);
 	}
-	//
+	//Se asigna un lider
 	Agent& leader = agents[0];
 
 	if (leader.hasTarget)
@@ -73,7 +75,7 @@ void Army::Update(std::vector<Agent>& agents, float dt)
 			leader.velocity = Vector2(0.0f, 0.0f);
 		}
 	}
-	//
+	//Se el asigna el seguir al lider si este a hecho un click, si no se iran a la formación si detectan que están lo suficientemente cerca de otros minions.
 	for (size_t i = 1; i < agents.size(); ++i)
 	{
 		Agent& follower = agents[i];
@@ -101,7 +103,7 @@ void Army::Update(std::vector<Agent>& agents, float dt)
 		Agent& agent = agents[i];
 		SteeringBehavior* far = (i == 0) ? (SteeringBehavior*)&_leaderFar : (SteeringBehavior*)&_farPriority;
 		SteeringBehavior* near = (i == 0) ? (SteeringBehavior*)&_leaderNear : (SteeringBehavior*)&_nearPriority;
-		//
+		//Se eligen lalista del lider y la de los seguidores
 
 		if (agent.GetSteering() == nullptr)
 			agent.SetSteering(far);
@@ -111,7 +113,7 @@ void Army::Update(std::vector<Agent>& agents, float dt)
 
 		float dist = (agent.target - agent.position).length();
 
-		//
+		//Si el actual steering del agente es uno de lejos y la distancia es más pequeña que al marjen de arrive pasa a usar arrive y viceversa
 		if (agent.GetSteering() == far && dist < _arriveEnterDist)
 		{
 			agent.SetSteering(near);
