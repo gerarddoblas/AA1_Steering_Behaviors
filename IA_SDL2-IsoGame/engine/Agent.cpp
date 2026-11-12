@@ -57,7 +57,8 @@ void Agent::update(float dt, const World &world)
     //    velocity = Vector2(0.0f, 0.0f);
     //    return;
     //}
-
+    
+    //Se crea un steering al cual se le pasa el propio agent
     Vector2 steering;
     if (_steeringBehavior)
         steering = _steeringBehavior->GetSteering(*this)._linear;

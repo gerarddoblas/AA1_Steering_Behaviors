@@ -55,6 +55,7 @@ public:
     float influenceAt(int tileX, int tileY) const;   // 0 if out of bounds or uninitialised
     void  clearInfluence();
 protected:
+    //Steeringbehavior del agente y un vector de agentes externo, es decir, que seguira viva aunque los Agents se destruyan
 	SteeringBehavior* _steeringBehavior = nullptr;
     const std::vector<Agent*>* _agents = nullptr;
 private:

@@ -4,7 +4,7 @@
 class WeightedBlending : public CompositeBehavior
 {
 public:
-	//
+	//La clase Weighted Blending se encarga unicamente de asignar pesos a cada steering cuando se añaden al vector del composite
 	void Add(SteeringBehavior* steering) override;
 	void Add(SteeringBehavior* steering, float weight);
 	void Remove(SteeringBehavior* steering) override;

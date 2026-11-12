@@ -7,7 +7,9 @@ Steering PrioritizedList::GetSteering(const Agent& agent) const
 	for (int i = 0; i < _children.size(); i++)
 	{
 		Steering steering = _children[i]->GetSteering(agent);
-
+		//Si la magnitud es más grande que el limite de ProritizedList, devuelve dicho Steering
+		//Se para con el primer steering el cual tenga la fuerza suficiente como para cambiar de Steering
+		//Se calcula magnitud, debido a que esta te devuelve la fuerza sin considerar la dirección.
 		if(steering.magnitude()> _threshold)
 		{
 			return steering.truncated(agent.maxForce);
