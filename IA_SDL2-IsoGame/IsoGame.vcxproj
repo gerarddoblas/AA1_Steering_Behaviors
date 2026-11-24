@@ -129,6 +129,7 @@
     <ClInclude Include="engine\Seek.hpp" />
     <ClInclude Include="engine\Separation.hpp" />
     <ClInclude Include="engine\SteeringBehavior.hpp" />
+    <ClInclude Include="engine\Tiles.hpp" />
     <ClInclude Include="engine\WeightedBlending.hpp" />
     <ClInclude Include="external\SDL2\include\SDL2\begin_code.h" />
     <ClInclude Include="external\SDL2\include\SDL2\close_code.h" />
@@ -233,6 +234,7 @@
     <ClInclude Include="engine\World.hpp" />
     <ClInclude Include="engine\WorldObject.hpp" />
     <ClInclude Include="engine\Steering.hpp" />
+    <ClInclude Include="engine\PathFinding.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />

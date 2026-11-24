@@ -238,6 +238,8 @@
     <ClInclude Include="engine\WeightedBlending.hpp" />
     <ClInclude Include="engine\PrioritizedList.hpp" />
     <ClInclude Include="engine\Army.hpp" />
+    <ClInclude Include="engine\PathFinding.hpp" />
+    <ClInclude Include="engine\Tiles.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data\maps\demo.map">
