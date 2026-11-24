@@ -72,6 +72,7 @@
     <ClCompile Include="engine\WeightedBlending.cpp" />
     <ClCompile Include="engine\PrioritizedList.cpp" />
     <ClCompile Include="engine\Army.cpp" />
+    <ClCompile Include="engine\PathFinding.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\deltatimer.hpp">
@@ -240,6 +241,7 @@
     <ClInclude Include="engine\Army.hpp" />
     <ClInclude Include="engine\PathFinding.hpp" />
     <ClInclude Include="engine\Tiles.hpp" />
+    <ClInclude Include="engine\PathFindingResult.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data\maps\demo.map">

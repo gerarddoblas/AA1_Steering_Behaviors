@@ -92,6 +92,7 @@
     <ClCompile Include="engine\Arrive.cpp" />
     <ClCompile Include="engine\Cohesion.cpp" />
     <ClCompile Include="engine\CompositeBehavior.cpp" />
+    <ClCompile Include="engine\PathFinding.cpp" />
     <ClCompile Include="engine\PrioritizedList.cpp" />
     <ClCompile Include="engine\Seek.cpp" />
     <ClCompile Include="engine\Separation.cpp" />
@@ -125,6 +126,7 @@
     <ClInclude Include="engine\Arrive.hpp" />
     <ClInclude Include="engine\Cohesion.hpp" />
     <ClInclude Include="engine\Minion.hpp" />
+    <ClInclude Include="engine\PathFindingResult.hpp" />
     <ClInclude Include="engine\PrioritizedList.hpp" />
     <ClInclude Include="engine\Seek.hpp" />
     <ClInclude Include="engine\Separation.hpp" />

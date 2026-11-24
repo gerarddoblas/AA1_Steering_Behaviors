@@ -1,5 +1,6 @@
 #include"World.hpp"
 #include"Tiles.hpp"
+#include"PathFindingResult.hpp"
 #include"vector"
 
 
@@ -9,5 +10,7 @@ public:
 	std::vector<Tiles> _path;
 	std::vector<Tiles> _exploredPath;
 
-	//TO DO: Struct  Result
+	PathFindingResult _result;
+
+	PathFindingResult Find(Tiles start, Tiles objective, World& world);
 };
