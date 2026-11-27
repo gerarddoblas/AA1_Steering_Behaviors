@@ -73,9 +73,21 @@ PathFindingResult PathFinding::Find(Tiles start,Tiles objective, World& world)
                 if (tileFounds[neighborIndex])
                     continue;
                 //Assigna a una variable el cost del pas
+                float cost;
                 //TO DO: Recta = 1 Diagonal = Raiz de 2
+                if (isDiagonal)
+                    cost = sqrt(2);
+                else
+                    cost = 1;
                 //TO DO: el g de la casella actual més el cost del pas
-                //TO DO: Si el cost nou es menor que el del vei, actualitza el cost del vei, apunta el index dels pares al index actual i crea un Nodes per a la veïna i fer push amb la Tile, priority i el numero d'interseccio
+                float totalCost = g[index] + cost;
+                //TO DO: Si el cost nou es menor que el del vei, actualitza el cost del vei, apunta el index dels pares al index actual i crea un Node per a la veïna i fer push amb la Tile, priority i el numero d'interseccio
+                if (totalCost < g[neighborIndex])
+                {
+                    g[neighborIndex] = totalCost;
+                    parents[neighborIndex] = index;
+                    Nodes newNode;
+                }
             }
         }
     }
