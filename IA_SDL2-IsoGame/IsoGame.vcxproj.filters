@@ -242,6 +242,7 @@
     <ClInclude Include="engine\PathFinding.hpp" />
     <ClInclude Include="engine\Tiles.hpp" />
     <ClInclude Include="engine\PathFindingResult.hpp" />
+    <ClInclude Include="engine\Node.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data\maps\demo.map">

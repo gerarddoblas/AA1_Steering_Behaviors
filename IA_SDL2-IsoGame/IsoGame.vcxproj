@@ -126,6 +126,7 @@
     <ClInclude Include="engine\Arrive.hpp" />
     <ClInclude Include="engine\Cohesion.hpp" />
     <ClInclude Include="engine\Minion.hpp" />
+    <ClInclude Include="engine\Node.hpp" />
     <ClInclude Include="engine\PathFindingResult.hpp" />
     <ClInclude Include="engine\PrioritizedList.hpp" />
     <ClInclude Include="engine\Seek.hpp" />

@@ -6,5 +6,5 @@ public:
 	int x;
 	int y;
 
-	//TO DO: operator==
+	bool operator==(Tiles tiles) { return (this->x == tiles.x && this->y == tiles.y); }
 };
